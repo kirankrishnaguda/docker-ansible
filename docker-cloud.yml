@@ -1,0 +1,5 @@
+nginx-ansible:
+  image: 'travisrowland/nginx-ansible:master'
+  ports:
+    - '80:80'
+    - '443:443'

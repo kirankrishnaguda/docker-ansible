@@ -296,6 +296,9 @@ If you use this option:
 If you use this method, the conf file formatting provided by this role is unavailable,
 and it is up to you to provide a template with valid content and formatting for NGINX._
 
+# TODO
+- Ability to configure NGINX/Ansible via docker-compose
+
 # Support
 support@dynamictivity.com
 
