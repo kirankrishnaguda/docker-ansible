@@ -1,0 +1,11 @@
+version: '2'
+services:
+    nginx-ansible:
+        build: .
+        ports:
+            - "80:80"
+            - "443:443"
+        # volumes:
+            # - /opt/nginx/logs/:/var/log/nginx
+            # - /opt/nginx/conf/:/etc/nginx/conf.d
+            # - /vagrant/ansible:/ansible
