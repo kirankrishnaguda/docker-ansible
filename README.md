@@ -297,7 +297,7 @@ If you use this method, the conf file formatting provided by this role is unavai
 and it is up to you to provide a template with valid content and formatting for NGINX._
 
 # Support
-support@dynamictiity.com
+support@dynamictivity.com
 
 License
 -------
