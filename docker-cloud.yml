@@ -1,5 +1,7 @@
 nginx-ansible:
   image: 'travisrowland/nginx-ansible:master'
+  autoredeploy: true
+  restart: always
   ports:
     - '80:80'
     - '443:443'
