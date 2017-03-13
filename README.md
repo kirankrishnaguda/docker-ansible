@@ -3,6 +3,9 @@ This is our docker image for configuring and running nginx as a reverse proxy. Y
 
 Original Ansible role: [https://github.com/jdauphant/ansible-role-nginx](https://github.com/jdauphant/ansible-role-nginx)
 
+## Contributing
+Please see [Contributing](CONTRIBUTING.md) for instructions on contributing to this repository.
+
 Role Variables
 --------------
 
