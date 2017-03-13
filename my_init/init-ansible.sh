@@ -1,3 +1,18 @@
 #!/bin/bash
-# ansible-galaxy install jdauphant.nginx &> galaxy-install.log
-cd /ansible && ansible-playbook nginx.yml
+
+if [ -n "$ANSIBLE_GALAXY_ROLES" ]; then
+  # Split ansible galaxy roles into array
+  IFS=',' read -r -a array <<< "$ANSIBLE_GALAXY_ROLES";
+
+  # Iterate over each galaxy role and install it
+  for element in "${array[@]}"
+  do
+      ansible-galaxy install $element >>/ansible/galaxy-install.log 2>&1;
+  done
+fi
+
+# Download remote playbook
+cd /ansible && wget -O playbook.yml $ANSIBLE_PLAYBOOK_URL
+
+# Run Ansible playbook
+cd /ansible && ansible-playbook playbook.yml

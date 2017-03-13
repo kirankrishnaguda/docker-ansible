@@ -11,7 +11,7 @@ ADD ansible/. /ansible
 ADD my_init/init-ansible.sh /etc/my_init.d/10-init-ansible.sh
 ADD my_init/init-nginx.sh /etc/my_init.d/20-init-nginx.sh
 
-RUN apt-get update && apt-get -y install nginx ansible
+RUN apt-get update && apt-get -y install nginx ansible wget
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

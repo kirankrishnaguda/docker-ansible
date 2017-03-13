@@ -5,7 +5,10 @@ services:
         ports:
             - "80:80"
             - "443:443"
-        # volumes:
+        environment:
+            ANSIBLE_PLAYBOOK_URL: http://gitlab.dynamictivity.com/ansible/nginx-ansible/snippets/1/raw
+            ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
+        volumes:
             # - /opt/nginx/logs/:/var/log/nginx
             # - /opt/nginx/conf/:/etc/nginx/conf.d
-            # - /vagrant/ansible:/ansible
+            - /vagrant/ansible:/ansible

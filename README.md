@@ -1,10 +1,28 @@
 # nginx-ansible
 This is our docker image for configuring and running nginx as a reverse proxy. You may find our custom configuration in [ansible/nginx.yml](ansible/nginx.yml)). To use this for your own purposes, you will simply have to fork this repo and change the configuration in the `nginx.yml` playbook.
 
+This docker container has the ability to pull in a playbook specification from a remote URL and automatically run that playbook on container startup. Primarily this is used to configure the in-build nginx server which is running in this container, however that doesn't stop you from configuring Ansible in this container to perform any number of additional tasks.
+
 Original Ansible role: [https://github.com/jdauphant/ansible-role-nginx](https://github.com/jdauphant/ansible-role-nginx)
 
 ## Contributing
 Please see [Contributing](CONTRIBUTING.md) for instructions on contributing to this repository.
+
+## Configuring Ansible Playbooks
+
+### Example docker-compose.yml
+```
+version: '2'
+services:
+    nginx-ansible:
+        build: .
+        ports:
+            - "80:80"
+            - "443:443"
+        environment:
+            ANSIBLE_PLAYBOOK_URL: http://gitlab.dynamictivity.com/ansible/nginx-ansible/snippets/1/raw
+            ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
+```
 
 Role Variables
 --------------
@@ -300,18 +318,16 @@ If you use this method, the conf file formatting provided by this role is unavai
 and it is up to you to provide a template with valid content and formatting for NGINX._
 
 # TODO
-- Ability to configure NGINX/Ansible via docker-compose
+- Ability to load remote Ansible hosts file
+- Ability to load remote Ansible configuration
 
 # Support
 support@dynamictivity.com
 
 License
 -------
-BSD
+MIT
 
 Author Information
 ------------------
-
-- Original : Benno Joy
-- Modified by : DAUPHANT Julien
-- Again modified by : Travis Rowland
+Travis Rowland
