@@ -28,7 +28,7 @@ tag_latest:
   script:
     - docker login --username=${DOCKER_CLOUD_USERNAME} --email=${DOCKER_CLOUD_EMAIL} --password=${DOCKER_CLOUD_PASSWORD}
     - docker tag ${CI_PROJECT_NAME}:${CI_BUILD_REF_NAME} ${DOCKER_CLOUD_REPO}:latest
-    - docker push ${DOCKER_CLOUD_REPO}:${CI_BUILD_REF_NAME}
+    - docker push ${DOCKER_CLOUD_REPO}:latest
   only:
     - master
   when: on_success
