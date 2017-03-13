@@ -15,12 +15,24 @@ build:
 deploy:
   stage: deploy
   script:
-    - docker tag ${CI_PROJECT_NAME}:${CI_BUILD_REF_NAME} ${DOCKER_CLOUD_REPO}:${CI_BUILD_REF_NAME}
     - docker login --username=${DOCKER_CLOUD_USERNAME} --email=${DOCKER_CLOUD_EMAIL} --password=${DOCKER_CLOUD_PASSWORD}
+    - docker tag ${CI_PROJECT_NAME}:${CI_BUILD_REF_NAME} ${DOCKER_CLOUD_REPO}:${CI_BUILD_REF_NAME}
     - docker push ${DOCKER_CLOUD_REPO}:${CI_BUILD_REF_NAME}
   only:
     - master
     - dev
+  when: on_success
+  tags:
+    - docker-build
+
+tag_latest:
+  stage: deploy
+  script:
+    - docker login --username=${DOCKER_CLOUD_USERNAME} --email=${DOCKER_CLOUD_EMAIL} --password=${DOCKER_CLOUD_PASSWORD}
+    - docker tag ${CI_PROJECT_NAME}:${CI_BUILD_REF_NAME} ${DOCKER_CLOUD_REPO}:latest
+    - docker push ${DOCKER_CLOUD_REPO}:${CI_BUILD_REF_NAME}
+  only:
+    - master
   when: on_success
   tags:
     - docker-build
