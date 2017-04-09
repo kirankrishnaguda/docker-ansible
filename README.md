@@ -20,7 +20,7 @@ services:
             - "80:80"
             - "443:443"
         environment:
-            ANSIBLE_PLAYBOOK_URL: http://gitlab.dynamictivity.com/ansible/nginx-ansible/snippets/1/raw
+            ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/nginx-ansible/snippets/1/raw
             ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
 ```
 
