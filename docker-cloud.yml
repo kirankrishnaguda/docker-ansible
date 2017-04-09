@@ -1,5 +1,5 @@
 nginx-ansible:
-  image: 'travisrowland/nginx-ansible:master'
+  image: 'dynamictivity/nginx-ansible:master'
   autoredeploy: true
   restart: always
   ports:
