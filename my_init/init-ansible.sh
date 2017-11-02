@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Download Ansible Galaxy roles, if specified
 if [ -n "$ANSIBLE_GALAXY_ROLES" ]; then
   # Split ansible galaxy roles into array
   IFS=',' read -r -a array <<< "$ANSIBLE_GALAXY_ROLES";
@@ -11,8 +12,14 @@ if [ -n "$ANSIBLE_GALAXY_ROLES" ]; then
   done
 fi
 
-# Download remote playbook
-cd /ansible && wget -O playbook.yml $ANSIBLE_PLAYBOOK_URL
+# Download remote playbook, if specified
+if [ -n "$ANSIBLE_PLAYBOOK_URL" ]; then
+  cd /ansible && wget -O site.yml $ANSIBLE_PLAYBOOK_URL;
+fi
 
 # Run Ansible playbook
-cd /ansible && ansible-playbook playbook.yml
+if [ -n "$ANSIBLE_COMMAND" ]; then
+  cd /ansible && $ANSIBLE_COMMAND;
+else
+  cd /ansible && ansible-playbook site.yml;
+fi

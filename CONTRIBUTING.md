@@ -4,7 +4,7 @@ Please contribute to this repository if any of the following is true:
 - You have expertise in community development, communication, or education
 - You want open-source to be more collaborative and inclusive
 - You want to help lower the burden to first time contributors
-- You have interest in the docker-cakephp project
+- You have interest in the docker-ansible project
 
 # How to contribute
 
@@ -12,7 +12,7 @@ Please contribute to this repository if any of the following is true:
 
 The source code repository located on GitHub is simply an external sync from our
 GitLab server. If you would like to contribute, please create an account on our
-[GitLab server](http://gitlab.dynamictivity.com/dynamictivity/nginx-ansible) -- from
+[GitLab server](http://gitlab.dynamictivity.com/dynamictivity/docker-ansible) -- from
 there you can fork the repository, report issues, create merge requests, etc.
 
 ## Types of contributions
