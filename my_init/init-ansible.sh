@@ -23,3 +23,7 @@ if [ -n "$ANSIBLE_COMMAND" ]; then
 else
   cd /ansible && ansible-playbook site.yml;
 fi
+
+# Kill Container
+## TODO: Find graceful way to do this: https://github.com/phusion/baseimage-docker/issues/451
+kill 1

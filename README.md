@@ -19,7 +19,7 @@ services:
     nginx-ansible:
         build: .
         environment:
-            ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/nginx-ansible/snippets/1/raw
+            ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
             ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
             ANSIBLE_COMMAND: "ansible-playbook site.yml"
 ```
