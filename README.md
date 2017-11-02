@@ -7,21 +7,39 @@ You also have the option of mounting your own Ansible Playbooks, Roles and Inven
 
 Lastly, you can also provide a custom `ansible.cfg` file by including it in your Ansible directory that you mount to the container. This container comes with a pre-installed `ansible.conf` that has sensible defaults.
 
+## Docker Hub
+This image is also available on Docker Hub: https://hub.docker.com/r/dynamictivity/docker-ansible/
+
 ## Contributing
 Please see [Contributing](CONTRIBUTING.md) for instructions on contributing to this repository.
 
 ## Configuring Ansible Playbooks
 
 ### Example docker-compose.yml
+#### Remote Playbook and Galaxy Roles
 ```
 version: '2'
 services:
     nginx-ansible:
-        build: .
+        image: dynamictivity/docker-ansible
         environment:
             ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
             ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
             ANSIBLE_COMMAND: "ansible-playbook site.yml"
+```
+
+#### Local Playbooks, Roles and Ansible Config
+```
+version: '2'
+services:
+    nginx-ansible:
+        image: dynamictivity/docker-ansible
+        environment:
+            ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
+            ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
+            ANSIBLE_COMMAND: "ansible-playbook site.yml"
+        volumes:
+            - /ansible:/local/path/to/ansible_playbooks
 ```
 
 # TODO
