@@ -25,7 +25,7 @@ services:
         environment:
             ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
             ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
-            ANSIBLE_COMMAND: "ansible-playbook site.yml"
+            ANSIBLE_COMMAND: "ansible all -m setup"
 ```
 
 #### Local Playbooks, Roles and Ansible Config
@@ -37,9 +37,10 @@ services:
         environment:
             ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
             ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
-            ANSIBLE_COMMAND: "ansible-playbook site.yml -i /ansible/inventory"
+            ANSIBLE_PLAYBOOK_ARGS: (site.yml -e "foo=bar" -vvvv)
         volumes:
-            - /ansible:/local/path/to/ansible_playbooks
+            - /local/path/to/ansible_playbooks:/ansible
+            - /local/path/to/ansible_inventory:/inventory
 ```
 
 # TODO

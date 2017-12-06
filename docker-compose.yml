@@ -5,4 +5,7 @@ services:
         environment:
             # ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
             # ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
-            ANSIBLE_COMMAND: "ansible all -m setup"
+            # ANSIBLE_COMMAND: "ansible all -m setup"
+            # ANSIBLE_PLAYBOOK_ARGS: site.yml -e foo=bar -vvvv
+            ANSIBLE_EXTRA_VARS: "foo=bar bar=foo"
+            ANSIBLE_EXTRA_EXTRA_VARS: "@params.json"
