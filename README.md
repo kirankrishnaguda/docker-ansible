@@ -15,7 +15,21 @@ Please see [Contributing](CONTRIBUTING.md) for instructions on contributing to t
 
 ## Configuring Ansible Playbooks
 
+### Docker Volumes
+ - Mount your inventory to `/inventory`
+ - Mount your Ansible to `/ansible`
+
 ### Example docker-compose.yml
+#### Ansible Command
+```
+version: '2'
+services:
+    nginx-ansible:
+        image: dynamictivity/docker-ansible
+        environment:
+            ANSIBLE_COMMAND: "ansible all -m setup"
+```
+
 #### Remote Playbook and Galaxy Roles
 ```
 version: '2'
@@ -26,20 +40,23 @@ services:
             ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
             ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
             ANSIBLE_COMMAND: "ansible-playbook site.yml"
+        volumes:
+            - /local/path/to/ansible_inventory:/inventory
 ```
 
-#### Local Playbooks, Roles and Ansible Config
+#### Local Playbooks, Ansible Config and Inventory
 ```
 version: '2'
 services:
     nginx-ansible:
         image: dynamictivity/docker-ansible
         environment:
-            ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
-            ANSIBLE_GALAXY_ROLES: "carlosbuenosvinos.ansistrano-deploy,jdauphant.nginx,ANXS.postgresql,dev-sec.os-hardening"
-            ANSIBLE_COMMAND: "ansible-playbook site.yml -i /ansible/inventory"
+            ANSIBLE_PLAYBOOK_ARGS: site.yml -vvvv
+            ANSIBLE_EXTRA_VARS: "foo=bar bar=foo"
+            ANSIBLE_EXTRA_EXTRA_VARS: "@params.json"
         volumes:
-            - /ansible:/local/path/to/ansible_playbooks
+            - /local/path/to/ansible_playbooks:/ansible
+            - /local/path/to/ansible_inventory:/inventory
 ```
 
 # TODO

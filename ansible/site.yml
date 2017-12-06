@@ -1,0 +1,15 @@
+---
+- name:  Verify foo variable
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  tasks:
+    - name: foo debug
+      debug: var=foo
+    - name: bar debug
+      debug: var=bar
+    - name: baz debug
+      debug: var=baz
+    - name: Ansible user
+      debug: var=ansible_user
