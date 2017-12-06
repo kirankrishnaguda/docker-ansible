@@ -7,7 +7,11 @@ FROM phusion/baseimage:0.9.22
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
-RUN apt-get update && apt-get -y install ansible wget
+RUN apt-get -y update \
+  && apt-get -y install software-properties-common wget \
+  && apt-add-repository ppa:ansible/ansible \
+  && apt-get -y update \
+  && apt-get -y install ansible
 
 ADD ansible/. /ansible
 ADD my_init/init-ansible.sh /etc/my_init.d/10-init-ansible.sh
