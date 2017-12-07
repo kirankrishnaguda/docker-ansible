@@ -8,7 +8,7 @@ FROM phusion/baseimage:0.9.22
 CMD ["/sbin/my_init"]
 
 RUN apt-get -y update \
-  && apt-get -y install software-properties-common wget \
+  && apt-get -y install software-properties-common wget rsync \
   && apt-add-repository ppa:ansible/ansible \
   && apt-get -y update \
   && apt-get -y install ansible
