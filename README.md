@@ -13,7 +13,20 @@ This image is also available on Docker Hub: https://hub.docker.com/r/dynamictivi
 ## Contributing
 Please see [Contributing](CONTRIBUTING.md) for instructions on contributing to this repository.
 
-## Configuring Ansible Playbooks
+## Run Ansible Directly
+You have the option of running Ansible in this image directly either using `docker-compose run` or `docker-run`.
+
+### Docker Compose
+```
+docker-compose run --rm docker-ansible ansible all -m ping
+```
+
+### Docker Run
+```
+docker run --rm dynamictivity/docker-ansible all -m ping
+```
+
+## Running Ansible (Playbooks) with Docker Compose
 
 ### Docker Volumes
  - Mount your inventory to `/inventory`
@@ -24,7 +37,7 @@ Please see [Contributing](CONTRIBUTING.md) for instructions on contributing to t
 ```
 version: '2'
 services:
-    nginx-ansible:
+    docker-ansible:
         image: dynamictivity/docker-ansible
         environment:
             ANSIBLE_COMMAND: "ansible all -m setup"
@@ -34,7 +47,7 @@ services:
 ```
 version: '2'
 services:
-    nginx-ansible:
+    docker-ansible:
         image: dynamictivity/docker-ansible
         environment:
             ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
@@ -48,7 +61,7 @@ services:
 ```
 version: '2'
 services:
-    nginx-ansible:
+    docker-ansible:
         image: dynamictivity/docker-ansible
         environment:
             ANSIBLE_PLAYBOOK_ARGS: site.yml -vvvv
@@ -58,6 +71,9 @@ services:
             - /local/path/to/ansible_playbooks:/ansible
             - /local/path/to/ansible_inventory:/inventory
 ```
+
+## Retrieving Exit Codes
+If you would like to retrieve exit codes from this container (useful for CI/CD), simply execute the container like so: `docker-compose run --rm docker-ansible; echo $?`
 
 # TODO
 - Ability to load remote Ansible inventory files

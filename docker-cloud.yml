@@ -1,7 +1,0 @@
-nginx-ansible:
-  image: 'dynamictivity/nginx-ansible:master'
-  autoredeploy: true
-  restart: always
-  ports:
-    - '80:80'
-    - '443:443'

@@ -13,3 +13,6 @@
       debug: var=baz
     - name: Ansible user
       debug: var=ansible_user
+    # - name: Fail test
+    #   fail:
+    #     msg: "Fail"

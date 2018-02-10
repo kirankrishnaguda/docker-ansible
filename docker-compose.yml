@@ -1,8 +1,8 @@
 version: '2'
 services:
-    docker-ansible:
-        build: .
-        environment:
-            ANSIBLE_PLAYBOOK_ARGS: site.yml -vvvv
-            ANSIBLE_EXTRA_VARS: "foo=bar bar=foo"
-            ANSIBLE_EXTRA_EXTRA_VARS: "@params.json"
+  docker-ansible:
+    build: .
+    environment:
+      ANSIBLE_PLAYBOOK_ARGS: site.yml -vvvv
+      ANSIBLE_EXTRA_VARS: "foo=bar bar=foo"
+      ANSIBLE_EXTRA_EXTRA_VARS: "@params.json"

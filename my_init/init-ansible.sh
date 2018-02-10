@@ -19,21 +19,12 @@ fi
 
 # Run Ansible command
 if [ -n "$ANSIBLE_COMMAND" ]; then
-  cd /ansible && $ANSIBLE_COMMAND;
-fi
-
+  $ANSIBLE_COMMAND;
 # Run Ansible playbook
 # TODO: This was quick and dirty, clean it up
-if [ -n "$ANSIBLE_PLAYBOOK_ARGS" ]; then
+elif [ -n "$ANSIBLE_PLAYBOOK_ARGS" ]; then
   # ANSIBLE_PLAYBOOK_ARGS='site.yml -e "foo=bar" -vvvv'
   array=($ANSIBLE_PLAYBOOK_ARGS)
   # echo "${array[@]}";
-  if [ -n "$ANSIBLE_EXTRA_VARS" ] || [ -n "$ANSIBLE_EXTRA_EXTRA_VARS" ]; then
-    cd /ansible && ansible-playbook "${array[@]}" -e "$ANSIBLE_EXTRA_VARS" --extra-vars "$ANSIBLE_EXTRA_EXTRA_VARS";
-  fi
+  cd /ansible && ansible-playbook "${array[@]}" -e "$ANSIBLE_EXTRA_VARS" --extra-vars "$ANSIBLE_EXTRA_EXTRA_VARS";
 fi
-
-
-# Kill Container
-## TODO: Find graceful way to do this: https://github.com/phusion/baseimage-docker/issues/451
-kill 1
