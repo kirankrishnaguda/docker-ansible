@@ -24,7 +24,7 @@ Please see [Contributing](CONTRIBUTING.md) for instructions on contributing to t
 ```
 version: '2'
 services:
-    nginx-ansible:
+    docker-ansible:
         image: dynamictivity/docker-ansible
         environment:
             ANSIBLE_COMMAND: "ansible all -m setup"
@@ -34,7 +34,7 @@ services:
 ```
 version: '2'
 services:
-    nginx-ansible:
+    docker-ansible:
         image: dynamictivity/docker-ansible
         environment:
             ANSIBLE_PLAYBOOK_URL: https://gitlab.dynamictivity.com/dynamictivity/docker-ansible/snippets/2/raw
@@ -48,7 +48,7 @@ services:
 ```
 version: '2'
 services:
-    nginx-ansible:
+    docker-ansible:
         image: dynamictivity/docker-ansible
         environment:
             ANSIBLE_PLAYBOOK_ARGS: site.yml -vvvv
@@ -58,6 +58,9 @@ services:
             - /local/path/to/ansible_playbooks:/ansible
             - /local/path/to/ansible_inventory:/inventory
 ```
+
+### Retrieving Exit Codes
+If you would like to retrieve exit codes from this container, simply execute the container like so: `docker-compose run --rm docker-ansible; echo $?`
 
 # TODO
 - Ability to load remote Ansible inventory files
