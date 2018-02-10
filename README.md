@@ -23,14 +23,14 @@ docker-compose run --rm docker-ansible ansible all -m ping
 
 ### Docker Run
 ```
-docker run --rm dynamictivity/docker-ansible all -m ping
+docker run --rm dynamictivity/docker-ansible ansible all -m ping
 ```
 
 ## Running Ansible (Playbooks) with Docker Compose
 
 ### Docker Volumes
  - Mount your inventory to `/inventory`
- - Mount your Ansible to `/ansible`
+ - Mount your Ansible Playbooks root to `/ansible`
 
 ### Example docker-compose.yml
 #### Ansible Command
