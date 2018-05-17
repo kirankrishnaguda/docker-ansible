@@ -4,7 +4,7 @@ RUN apt-get -y update \
   && apt-get -y install software-properties-common wget rsync \
   && apt-add-repository ppa:ansible/ansible \
   && apt-get -y update \
-  && apt-get -y install ansible
+  && apt-get -y install ansible zip unzip
 
 ADD ansible/. /ansible
 ADD my_init/init-ansible.sh /init.sh
