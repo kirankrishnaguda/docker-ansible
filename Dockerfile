@@ -4,7 +4,9 @@ RUN apt-get -y update \
   && apt-get -y install software-properties-common wget rsync \
   && apt-add-repository ppa:ansible/ansible \
   && apt-get -y update \
-  && apt-get -y install ansible zip unzip python-pexpect
+  && apt-get -y install zip unzip python-pexpect python-pip
+
+RUN pip install ansible==2.7
 
 ADD ansible/. /ansible
 ADD my_init/init-ansible.sh /init.sh
